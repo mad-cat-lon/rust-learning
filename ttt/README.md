@@ -1,1 +1,1 @@
-Simple tic-tac-toe game I wrote in an evening to learn more about Rust. 
+Simple tic-tac-toe game I wrote in an evening to learn more about Rust.
