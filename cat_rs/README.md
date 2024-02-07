@@ -1,0 +1,1 @@
+Simple Rust implementation of cat for learning purposes, WIP!
