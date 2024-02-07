@@ -36,11 +36,10 @@ fn add_line_numbers(contents: &mut String) -> String {
     contents
         .lines()
         .enumerate()
-        .map(|(i, line)| format!("  {:4} {}", i+1, line))
+        .map(|(i, line)| format!("  {:4} {}", i + 1, line))
         .collect::<Vec<_>>()
         .join("\n")
 }
-
 
 fn add_end_chars(contents: &mut String, end_char: char) -> String {
     contents
@@ -55,16 +54,15 @@ fn add_tab_chars(contents: &mut String) -> String {
     contents.replace("  ", "^I")
 }
 
-
 fn main() -> std::io::Result<()> {
     let args: Vec<String> = env::args().collect();
-    
+
     let arg_1 = &args[1];
     match arg_1.as_str() {
         "--help" => {
             help();
             return Ok(());
-        },
+        }
         "-n" | "--number" => {
             if args.len() < 3 {
                 println!("Missing filename!");
@@ -76,7 +74,7 @@ fn main() -> std::io::Result<()> {
             file.read_to_string(&mut contents)?;
             let line_numbered_content = add_line_numbers(&mut contents);
             println!("{}", line_numbered_content);
-        },
+        }
         "-E" | "--show-ends" => {
             if args.len() < 3 {
                 println!("Missing filename!");
@@ -88,7 +86,7 @@ fn main() -> std::io::Result<()> {
             file.read_to_string(&mut contents)?;
             let line_delimited_content = add_end_chars(&mut contents, '$');
             println!("{}", line_delimited_content);
-        },
+        }
         "-T" | "--show-tabs" => {
             if args.len() < 3 {
                 println!("Missing filename!");
@@ -101,7 +99,7 @@ fn main() -> std::io::Result<()> {
             let tab_replaced_content = add_tab_chars(&mut contents);
             println!("{}", tab_replaced_content);
         }
-        _ =>  {
+        _ => {
             let filename = &args[1];
             let mut file = File::open(filename)?;
             let mut contents = String::new();
